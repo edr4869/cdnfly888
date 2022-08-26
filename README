@@ -10,23 +10,23 @@ vi /etc/hosts
 0.0.0.0  auth.cdnfly.cn monitor.cdnfly.cn
 2.主控
 v5.1.11版本安装脚本:
-curl -fsSL https://gitee.com/edr4869/cdnflydadao/edit/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://gitee.com/edr4869/cdnflydadao/raw/main/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 
 新v5.1.13版本安装脚本:
 
-curl -fsSL https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
+curl -fsSL https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/v5.1.13/master/master.sh -o master.sh && chmod +x master.sh && ./master.sh --es-dir /home/es
 
 3.被控
 v5.1.15版本安装脚本:
-curl -fsSL -m 5 https://gitee.com/edr4869/cdnflydadao/edit/main/agent/agent.sh -o agent.sh || curl -m 5 https://gitee.com/edr4869/cdnflydadao/edit/main/agent/agent.sh -o agent.sh  && chmod +x agent.sh && ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
+curl -fsSL -m 5 https://gitee.com/edr4869/cdnflydadao/raw/main/agent/agent.sh -o agent.sh || curl -m 5 https://gitee.com/edr4869/cdnflydadao/raw/main/agent/agent.sh -o agent.sh  && chmod +x agent.sh && ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
 
 新v5.1.16版本安装脚本:
-curl -fsSL -m 5 https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh || curl -m 5 https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh  && chmod +x agent.sh && ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
+curl -fsSL -m 5 https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh || curl -m 5 https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/v5.1.13/agent/agent.sh -o agent.sh  && chmod +x agent.sh && ./agent.sh --master-ver v5.1.11 --master-ip ip --es-ip ip --es-pwd passwd
 
 4.
 已安装过官方版的开心方法：
 执行以下命令完成开心：
-wget https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/api.py -O /opt/venv/lib/python2.7/site-packages/requests/api.py
+wget https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/api.py -O /opt/venv/lib/python2.7/site-packages/requests/api.py
 supervisorctl -c /opt/cdnfly/master/conf/supervisord.conf reload
 
 如果旧版本要升级，可以先更新自建云端的文件，然后执行“已安装过官方版的开心方法”这一部分的命令，最后在主控后台升级。
@@ -72,7 +72,7 @@ supervisorctl -c /opt/cdnfly/master/conf/supervisord.conf reload
 在旧主控执行如下命令开始备份（注意：备份前会停止旧主控的进程）
 
 cd /root
-curl https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/backup_master.sh -o backup_master.sh
+curl https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/backup_master.sh -o backup_master.sh
 chmod +x backup_master.sh
 ./backup_master.sh
 这时候将在目录/root下，打包生成cdn.sql.gz文件，请把这个文件传输到新主控的/root/目录下，可以使用scp命令，命令如下：
@@ -88,7 +88,7 @@ grep VERSION_NAME /opt/cdnfly/master/conf/config.py
 
 登录新机器，执行如下命令安装:
 
-curl https://gitee.com/edr4869/cdnflydadao/edit/main/master.sh -o master.sh
+curl https://gitee.com/edr4869/cdnflydadao/raw/main/master.sh -o master.sh
 chmod +x master.sh
 ./master.sh --ver v4.1.60
 其中v4.1.60替换成自己的主控版本号
@@ -96,7 +96,7 @@ chmod +x master.sh
 执行如下命令恢复
 
 cd /root
-curl https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/restore_master.sh -o restore_master.sh
+curl https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/restore_master.sh -o restore_master.sh
 chmod +x restore_master.sh
 ./restore_master.sh
 从旧主控下载/opt/cdnfly/master/conf/config.py上传到新主控覆盖
@@ -104,7 +104,7 @@ chmod +x restore_master.sh
 执行如下命令初始化:
 
 cd /tmp
-wget https://gitee.com/edr4869/cdnflydadao/edit/main/cdnfly/int_es.sh -O int_es.sh
+wget https://gitee.com/edr4869/cdnflydadao/raw/main/cdnfly/int_es.sh -O int_es.sh
 chmod +x int_es.sh
 ./int_es.sh /home/es
 supervisorctl restart all
